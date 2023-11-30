@@ -23,9 +23,8 @@ width2 = 20
 height2 = 20
 
 # velocity / speed of movement
-vel = 1.5
-vel2 = 1.5
-
+vel = 2
+vel2 = 2
 
 # Indicates pygame is running
 run = True
@@ -36,6 +35,10 @@ isbluetagger = True
 
 green = (0, 255, 0)
 blue = (0, 0, 128)
+
+white = (255, 255, 255)
+true_blue = (0, 0, 255)
+true_red = (255, 0, 0)
 
 score_x = 10
 score_y = 10
@@ -147,21 +150,40 @@ while run:
         y2 = starting_position_blue[1]
         isbluetagger = not isbluetagger
 
+    if isbluetagger:
+        taggerText = "BLUE"
+    else:
+        taggerText = "RED"
+
     redscoreText = font.render(f'Red score: {redscore}', True, green, blue)
     bluescoreText = font.render(f'Blue score: {bluescore}', True, green, blue)
+    if isbluetagger:
+        taggerText = font.render(f'The current tagger is: {taggerText}', True, true_blue, white)
+    else:
+        taggerText = font.render(f'The current tagger is: {taggerText}', True, true_red, white)
 
     # create a rectangular object for the
     # text surface object
     redTextRect = redscoreText.get_rect()
     blueTextRect = bluescoreText.get_rect()
+
+    taggerTextRect = taggerText.get_rect()
     # set the center of the rectangular object.
     redTextRect.center = ((score_x // 2) + 400, score_y // 2)
     blueTextRect.center = ((score_x // 2) + 100, score_y // 2)
 
+    taggerTextRect.center = ((score_x // 2) + 250, score_y // 2)
+
     win.blit(redscoreText, redTextRect)
     win.blit(bluescoreText, blueTextRect)
+
+
+    win.blit(taggerText, taggerTextRect)
+
     # it refreshes the window
     pygame.display.update()
+
+
 
 
 # closes the pygame window
