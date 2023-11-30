@@ -23,8 +23,8 @@ width2 = 20
 height2 = 20
 
 # velocity / speed of movement
-vel = 2
-vel2 = 2
+vel = 1.5
+vel2 = 1.5
 
 
 # Indicates pygame is running
